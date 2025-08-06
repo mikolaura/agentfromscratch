@@ -105,7 +105,6 @@ workflow.add_edge("decomposition", END)
 #     # First, we define the start node. We use `agent`.
 #     # This means these are the edges taken after the `agent` node is called.
 #     "agent",
-#     # Next, we pass in the function that will determine which node is called next.
 #     should_continue,
 #     # Finally we pass in a mapping.
 #     # The keys are strings, and the values are other nodes.

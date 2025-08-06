@@ -1,5 +1,6 @@
 from langchain_core.tools import tool
 
+
 @tool
 def get_weather(location: str):
     """Call to get the weather from a specific location."""
@@ -13,11 +14,17 @@ def get_weather(location: str):
 
 @tool
 def search(query: str) -> str:
-    """Perform a search using DuckDuckGo."""
+    """Perform a search using DuckDuckGo. When you need about data that can change over time."""
     from ddgs import DDGS
+
     print(f"Searching for: {query}")
     results = DDGS().text(query)
     if results:
-        return "\n".join([f"{i+1}. {result['title']}\n{result['body']}" for i, result in enumerate(results)])
+        return "\n".join(
+            [
+                f"{i+1}. {result['title']}\n{result['body']}"
+                for i, result in enumerate(results)
+            ]
+        )
     else:
         return "No results found."
