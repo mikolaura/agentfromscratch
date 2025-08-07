@@ -3,7 +3,8 @@
   "graphs": {
     "agent": "./src/agent/graph.py:graph",
     "decomposition": "./src/decomposition/decomposition.py:graph",
-    "paper_getter": "./src/paper_getter/paper_getter.py:graph"
+    "paper_getter": "./src/paper_getter/paper_getter.py:paper_getter",
+    "review_writter": "./src/review_writter/review_writter.py:review"
   },
   "env": ".env",
   "image_distro": "wolfi"

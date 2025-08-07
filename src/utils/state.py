@@ -1,4 +1,4 @@
-from typing import TypedDict, Optional, Any
+from typing import TypedDict, Optional, Any, Dict
 from langchain_core.messages import BaseMessage
 
 
@@ -14,7 +14,7 @@ class SystemState(TypedDict):
     topic: str
     """List of subtopics derived from the main topic."""
     subtopics: Optional[list[str]] = []
+    # EXAMPLE: {"subtopic_name": ["paper1", "paper2", ...]}
+    papers: Optional[Dict[str, list[str]]] = []
 
-    papers: Optional[list[str]] = []
-
-    # messages: Optional[list[BaseMessage]] = None
+    review: Optional[str] = None

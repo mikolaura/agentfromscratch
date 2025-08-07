@@ -26,6 +26,8 @@ from langchain_core.messages import BaseMessage
 from langgraph.graph.message import add_messages
 from langgraph.prebuilt import create_react_agent
 from src.decomposition.decomposition import graph
+from src.paper_getter.paper_getter import paper_getter
+from src.review_writter.review_writter import review
 from src.utils.state import InputState, SystemState
 
 # Initialize Tavily Search Tool
@@ -90,8 +92,12 @@ from langgraph.graph import StateGraph, END
 # Define a new graph
 workflow = StateGraph(SystemState, input_schema=InputState)
 workflow.add_node("decomposition", graph)
+workflow.add_node("paper_getter", paper_getter)
+workflow.add_node("review", review)
 workflow.set_entry_point("decomposition")
-workflow.add_edge("decomposition", END)
+workflow.add_edge("decomposition", "paper_getter")
+workflow.add_edge("paper_getter", "review")
+workflow.set_finish_point("review")
 # # Define the two nodes we will cycle between
 # workflow.add_node("agent", call_model)
 # workflow.add_node("tools", ToolNode(tools))
